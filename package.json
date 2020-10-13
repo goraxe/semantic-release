@@ -1,5 +1,5 @@
 {
-  "name": "semantic-release",
+  "name": "@goraxe/semantic-release",
   "description": "Automated semver compliant package publishing",
   "version": "0.0.0-development",
   "author": "Stephan Bönnemann <stephan@boennemann.me> (http://boennemann.me)",
@@ -8,6 +8,9 @@
       "test/**/*.test.js"
     ],
     "timeout": "2m"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "bin": {
     "semantic-release": "bin/semantic-release.js"
