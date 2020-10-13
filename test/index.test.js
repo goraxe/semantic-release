@@ -92,7 +92,7 @@ test('Plugins are called with expected values', async (t) => {
     repositoryUrl,
     globalOpt: 'global',
     tagFormat: `v\${version}`,
-    createTag: true,
+    pushTag: true,
   };
   const branches = [
     {
@@ -884,7 +884,7 @@ test('Call all "success" plugins even if one errors out', async (t) => {
     repositoryUrl,
     globalOpt: 'global',
     tagFormat: `v\${version}`,
-    createTag: true,
+    pushTag: true,
   };
   const options = {
     ...config,
@@ -929,11 +929,11 @@ test('Log all "verifyConditions" errors', async (t) => {
   const error2 = new SemanticReleaseError('error 2', 'ERR2');
   const error3 = new SemanticReleaseError('error 3', 'ERR3');
   const fail = stub().resolves();
-  const config = {branches: [{name: 'master'}], repositoryUrl, tagFormat: `v\${version}`, createTag: true};
+  const config = {branches: [{name: 'master'}], repositoryUrl, tagFormat: `v\${version}`, pushTag: true};
   const options = {
     ...config,
     plugins: false,
-    createTag: true,
+    pushTag: true,
     verifyConditions: [stub().rejects(new AggregateError([error1, error2])), stub().rejects(error3)],
     fail,
   };
@@ -974,13 +974,13 @@ test('Log all "verifyRelease" errors', async (t) => {
   const error1 = new SemanticReleaseError('error 1', 'ERR1');
   const error2 = new SemanticReleaseError('error 2', 'ERR2');
   const fail = stub().resolves();
-  const config = {branches: [{name: 'master'}], repositoryUrl, tagFormat: `v\${version}`, createTag: true};
+  const config = {branches: [{name: 'master'}], repositoryUrl, tagFormat: `v\${version}`, pushTag: true};
   const options = {
     ...config,
     verifyConditions: stub().resolves(),
     analyzeCommits: stub().resolves('major'),
     verifyRelease: [stub().rejects(error1), stub().rejects(error2)],
-    createTag: true,
+    pushTag: true,
     fail,
   };
 

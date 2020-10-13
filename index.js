@@ -187,14 +187,16 @@ async function run(context, plugins) {
   if (options.dryRun) {
     logger.warn(`Skip ${nextRelease.gitTag} tag creation in dry-run mode`);
     // Create the tag before calling the publish plugins as some require the tag to exists
-  } else if (options.createTag) {
+  } else {
     await tag(nextRelease.gitTag, nextRelease.gitHead, {cwd, env});
     await addNote({channels: [nextRelease.channel]}, nextRelease.gitHead, {cwd, env});
-    await push(options.repositoryUrl, {cwd, env});
-    await pushNotes(options.repositoryUrl, {cwd, env});
-    logger.success(`Created tag ${nextRelease.gitTag}`);
-  } else {
-    logger.success(`Skipping creating tag ${nextRelease.gitTag}`);
+    if (options.pushTag) {
+      await push(options.repositoryUrl, {cwd, env});
+      await pushNotes(options.repositoryUrl, {cwd, env});
+      logger.success(`Created tag ${nextRelease.gitTag}`);
+    } else {
+      logger.success(`Skipping creating tag ${nextRelease.gitTag}`);
+    }
   }
 
   const releases = await plugins.publish(context);
