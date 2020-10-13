@@ -111,6 +111,7 @@ test('Read options from package.json', async (t) => {
     branches: ['test_branch'],
     repositoryUrl: 'https://host.null/owner/module.git',
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json in repository root
@@ -133,6 +134,7 @@ test('Read options from .releaserc.yml', async (t) => {
     branches: ['test_branch'],
     repositoryUrl: 'https://host.null/owner/module.git',
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json in repository root
@@ -155,6 +157,7 @@ test('Read options from .releaserc.json', async (t) => {
     branches: ['test_branch'],
     repositoryUrl: 'https://host.null/owner/module.git',
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json in repository root
@@ -177,6 +180,7 @@ test('Read options from .releaserc.js', async (t) => {
     branches: ['test_branch'],
     repositoryUrl: 'https://host.null/owner/module.git',
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json in repository root
@@ -199,6 +203,7 @@ test('Read options from release.config.js', async (t) => {
     branches: ['test_branch'],
     repositoryUrl: 'https://host.null/owner/module.git',
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json in repository root
@@ -228,6 +233,7 @@ test('Prioritise CLI/API parameters over file configuration and git repo', async
     branches: ['branch_cli'],
     repositoryUrl: 'http://cli-url.com/owner/package',
     tagFormat: `cli\${version}`,
+    createTag: true,
     plugins: false,
   };
   const pkg = {release: pkgOptions, repository: 'git@host.null:owner/module.git'};
@@ -253,6 +259,7 @@ test('Read configuration from file path in "extends"', async (t) => {
     branches: ['test_branch'],
     repositoryUrl: 'https://host.null/owner/module.git',
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: ['plugin-1', ['plugin-2', {plugin2Opt: 'value'}]],
   };
   // Create package.json and shareable.json in repository root
@@ -284,6 +291,7 @@ test('Read configuration from module path in "extends"', async (t) => {
     branches: ['test_branch'],
     repositoryUrl: 'https://host.null/owner/module.git',
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json and shareable.json in repository root
@@ -319,6 +327,7 @@ test('Read configuration from an array of paths in "extends"', async (t) => {
     analyzeCommits: {path: 'analyzeCommits2', param: 'analyzeCommits_param2'},
     branches: ['test_branch'],
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json and shareable.json in repository root
@@ -358,6 +367,7 @@ test('Prioritize configuration from config file over "extends"', async (t) => {
     branches: ['test_branch'],
     repositoryUrl: 'https://host.null/owner/module.git',
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json and shareable.json in repository root
@@ -405,6 +415,7 @@ test('Prioritize configuration from cli/API options over "extends"', async (t) =
     publish: [{path: 'publishShareable', param: 'publishShareable_param2'}],
     branches: ['test_branch2'],
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json, shareable1.json and shareable2.json in repository root
@@ -435,6 +446,7 @@ test('Allow to unset properties defined in shareable config with "null"', async 
     generateNotes: 'generateNotes',
     analyzeCommits: {path: 'analyzeCommits', param: 'analyzeCommits_param'},
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: ['test-plugin'],
   };
   // Create package.json and shareable.json in repository root
@@ -479,6 +491,7 @@ test('Allow to unset properties defined in shareable config with "undefined"', a
     generateNotes: 'generateNotes',
     analyzeCommits: {path: 'analyzeCommits', param: 'analyzeCommits_param'},
     tagFormat: `v\${version}`,
+    createTag: true,
     plugins: false,
   };
   // Create package.json and release.config.js in repository root
